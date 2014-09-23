@@ -1,0 +1,32 @@
+{
+  "name": "angular-localization-meetup",
+  "version": "0.0.0",
+  "description": "slide presentation for angular-localization meetup -- i18n for AngularJS",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doshprompt/angular-localization-meetup.git"
+  },
+  "keywords": [
+    "i18n",
+    "l10n",
+    "angular",
+    "angularjs",
+    "ngLocalize",
+    "locale",
+    "localization",
+    "internationalization",
+    "meetup"
+  ],
+  "author": "Rahul Doshi <rahuld223@yahoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doshprompt/angular-localization-meetup/issues"
+  },
+  "homepage": "https://github.com/doshprompt/angular-localization-meetup",
+  "devDependencies": {
+    "node-static": "^0.7.5"
+  }
+}

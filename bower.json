@@ -1,0 +1,34 @@
+{
+  "name": "angular-localization-meetup",
+  "version": "0.0.0",
+  "authors": [
+    "Rahul Doshi <rahuld223@yahoo.com>"
+  ],
+  "description": "slide presentation for angular-localization meetup -- i18n for AngularJS",
+  "keywords": [
+    "i18n",
+    "l10n",
+    "angular",
+    "angularjs",
+    "ngLocalize",
+    "locale",
+    "localization",
+    "internationalization",
+    "meetup"
+  ],
+  "license": "MIT",
+  "homepage": "http://doshprompt.github.io/angular-localization-meetup",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.2.0",
+    "reveal.js": "~2.6.2",
+    "zepto": "~1.1.4"
+  }
+}

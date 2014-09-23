@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>i18n for AngularJS: Prepare for you "next billion users</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="Rahul Doshi">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+
+		<link rel="stylesheet" href="css/theme.css">
+
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'bower_components/reveal.js/css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+            <aside class="logos">
+                <a href="http://angularjs.org">
+                    <img class="angularjs" src="img/angularjs.png">
+                </a>
+                <a href="http://doshprompt.github.io/angular-localization">
+                    <small>
+                        <i class="fa fa-plus"></i>
+                    </small>
+                    <i class="fa fa-globe"></i>
+                </a>
+            </aside>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 style="margin: 50px 0 .3em">
+                        Internationalize AngularJS
+                    </h1>
+					<h3 style="margin-bottom: 1em">
+                        A Globalized App for a Global Audience
+                    </h3>
+					<p>
+						<small>Presented by <a href="mailto:rahuld223@yahoo.com">Rahul Doshi</a> | <a href="http://twitter.com/doshprompt">@doshprompt</a></small>
+					</p>
+                    <p style="margin-top: -25px">
+                        <small>
+                            from
+                            <a href="http://dailymotion.com">
+                                <img src="img/dailymotion.png" class="logo-dailymotion">
+                            </a>
+                        </small>
+                    </p>
+				</section>
+
+				<section>
+					<h2>Agenda</h2>
+					<div id="toc"></div>
+				</section>
+
+                <section>
+                    <section>
+                        <h2 class="slide-header">What are i18n & L10n?</h2>
+                        <blockquote style="line-height:1.25em; margin-bottom: 0.25em">
+                            &ldquo;<strong>i18n</strong> or <strong>Internationalization</strong> is the process of designing a software application so that it can potentially be adapted to various languages and regions without engineering changes.&rdquo;
+                        </blockquote>
+    					<p>
+    					    <a href="http://en.wikipedia.org/wiki/Internationalization_and_localization">Wikipedia</a>
+    					</p>
+                    </section>
+                    <section>
+                        <blockquote style="line-height:1.25em; margin-bottom: 0.25em">
+                            &ldquo;<strong>L10n</strong> or <strong>Localization</strong> is the process of adapting internationalized software for a specific region or language by adding locale-specific components and translating text.&rdquo;
+                        </blockquote>
+    					<p>
+    					    <a href="http://en.wikipedia.org/wiki/Internationalization_and_localization">Wikipedia</a>
+    					</p>
+                    </section>
+                    <section>
+                        <p>
+                            <u>Localization</u> (which is potentially performed multiple times, for different locales)
+                            uses the infrastructure or flexibility provided by <u>internationalization</u>
+                            (which is ideally performed only once, or as an integral part of ongoing development).
+                        </p>
+                        <p>
+                            The terms are frequently abbreviated to the numeronyms <i>i18n</i>
+                            (where 18 stands for the number of letters between the first i and last n in internationalization)
+                            and <i>L10n</i> respectively, due to the length of the words.
+                        </p>
+                        <h4 class="fragment">E.g. R3d D3i</h4>
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+    					<h2 class="slide-header">Why is multilingual support so important?</h2>
+
+    					<blockquote style="line-height:1.25em; margin-bottom: 0.25em">
+    						&ldquo;The next billion will differ in more ways than just geography.
+                            Most new Internet users will not speak English as their first language&rdquo;
+    					</blockquote>
+    					<p>
+    					    <a href="mailto:mgeist@uottawa.ca">Michael Geist</a>
+    					</p>
+                    </section>
+
+                    <section>
+                        <h2>Is English Still the Language of the Internet?</h2>
+                        <ul>
+                            <li class="fragment">
+                                <a href="http://qz.com/96054/english-is-no-longer-the-language-of-the-web/">
+                                    English is no longer the language of the web
+                                </a>
+                            </li>
+                            <li class="fragment">
+                                <a href="http://www.telegraph.co.uk/technology/broadband/9567934/Chinese-internet-users-to-overtake-English-language-users-by-2015.html">
+                                    Chinese internet users to overtake English language users by 2015
+                                </a>
+                            </li>
+                            <li class="fragment">
+                                <a href="http://www.internetsociety.org/blog/asia-pacific-bureau/2014/09/internet-next-billion-or-two">
+                                    An Internet for the Next Billion ... or Two
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+
+					<aside class="notes">
+						Since as early as 2007 people have been talking about multilingual support
+					</aside>
+				</section>
+
+				<section>
+    				<section>
+    					<h2 class="slide-header">Current Efforts</h2>
+    					<ul>
+                            <li>Angular's native $locale service</li>
+                            <li>ECMAScript Internationalization API</li>
+                            <li>
+                                Community-driven projects
+                                <ul>
+                                    <li>
+                                        <a href="http://angular-translate.github.io/">
+                                            angular-translate
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://angular-gettext.rocketeer.be/">
+                                            angular-gettext
+                                        </a>
+                                    </li>
+                                    <li>various online tutorials</li>
+                                </ul>
+                            </li>
+                        </ul>
+    				</section>
+                    <section>
+                        <h2>AngularJS $locale</h2>
+                        <p>It provides localization rules for various Angular components.</p>
+                        <p>It works well for number systems, formatting, grouping and precision as well as decimal marks.</p>
+                        <p>It also does datetime, currency formatting.</p>
+                        <p>Used through the built-in angular filters.</p>
+                    </section>
+                    <section>
+                        <h2>ES Internationalization API</h2>
+                        <p>
+                            Edition 1 provides most of the services that are similar to $locale along with most notably,
+                            <strong>Collation</strong>, in two scenarios: sorting a set of strings and searching within a set of strings.
+                            Collation is parameterized by locale and aware of Unicode.
+                            </p>
+                        <p>
+                            <strong>Intl</strong> object Currently supported in IE11, Chrome and Firefox Nightly Builds controlled via a flag.
+                            <a href="http://ref.openweb.io/ECMAScript/Internationalization/support.html">
+                                Compatibility Table
+                            </a>
+                        </p>
+                        <p>
+                            Upcoming edition 2 will support some more common use-cases like message formatting:
+                            format a string with placeholders, including plural and gender support.
+                            However, it will be based on Es6 and will not be backwards compatible anymore.
+                        </p>
+
+                        <aside class="notes">
+                            But we don't want to wait for edition 2 to be ratified and then make its way to all standard browsers.
+                            Also what about older browser versions that don't support it?
+                            Polyfill not a good idea -- some libraries exist but constantly evolving, unstable and incomplete.
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Some drawbacks of open-source libraries</h2>
+                        <p>
+                            angular-translate uses ICU's MessageFormat which uses a different kind of "interpolation",
+                            e.g. it uses single curly braces instead of double curly braces,
+                            which means one misses all features angular built-in interpolation brings (filters etc).
+                        </p>
+                        <p>
+                            angular-gettext is too much magic, not enough control in the hands of the app developer.
+                            also, it bypasses certain useful angularjs functionality like the ngPluralize directive.
+                        </p>
+                        <p>
+                            Most tutorials available on the web only address a very small part of the problem,
+                            some miss the point or don't acknowledge the larger issues.
+                        </p>
+
+                        <aside class="notes">
+                            So in almost all situations when you are building a large-scale highly custom application,
+                            it would make sense for you to roll out your own version of a globalization module,
+                            supporting your own flavor of a translation indexed database etc.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <p>
+                            If you want to know more follow the link from
+                            <a href="https://groups.google.com/forum/#!topic/angular/F0dS_MczplU">
+                                this
+                            </a>
+                            Google Groups discussion thread, but it looks something like this:
+                        </p>
+                        <img
+                            class="fragment"
+                            src="http://imgs.xkcd.com/comics/standards.png"
+                            title="Fortunately, the charging one has been solved now that we've all standardized on mini-USB. Or is it micro-USB? Shit.">
+                        </img>
+                    </section>
+				</section>
+
+                <section>
+                    <section>
+                        <h2 class="slide-header">Thinking about a solution</h2>
+
+                        <p>
+                            Addressing all aspects of globalization with respect to your app is a large and complex problem.
+                            There are a lot of ways of approaching the issues, and no real right or wrong method for any of them.
+                        </p>
+                            So it's best to get started early -- the sooner, the better.
+                        </p>
+
+                        <aside class="notes">
+                            Start building it early on, we have already seen that it is a part of the infrastructure
+                            and there are a lot of moving parts to deal with.
+                            The more pages you have or the further along you are in your development cycle,
+                            the more difficult it will be to integrate a new language/support a different locale.
+                            The problems will multiply very quickly and grow exponentially
+                            when you have to support more than one different locale, bring in a translator or redo the design.
+                            It will be harder to make the switch, scramble to make way for the designer, get the translator up to speed
+                            and it will also be more effort for the dev team, and the timeline delays will be hard to swallow.
+
+                            Make sure that you cover all of your bases early on,
+                            it is much harder to go back and plug gaps or implement new functionality
+                            in order to support a language later on.
+                            Making the core extensible is a lot easier, as it rarely happens that a fix issued
+                            for one particular locale in the future won't impact any others in a non-breaking way.
+
+                            Once you are heavily invested and committed to a particular design, you have no choice but to run with it.
+                            So choose carefully, tread lightly, and think things through.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Design keeping word length(s) in mind</h2>
+                        <p>
+                            <strong>EN:</strong> desktop
+                            <br>
+                            <strong class="fragment">FR:</strong>
+                            <span class="fragment">Ordinateurs de bureau et portables</span>
+                        </p>
+                        <p class="fragment">
+                            translates to 'desktop computer' since all French translations of 'desktop' mean 'table'
+                            (literal translation)
+                        </p>
+                        <p class="fragment">
+                            <i>BUT</i>
+                        </p>
+                        <p class="fragment">
+                            <strong>DE:</strong> Donaudampfschiffahrtsgesellschaftskapitän
+                            <br>
+                            <strong>EN:</strong>
+                            <span class="fragment">Danube steamship company captain</span>   
+                        </p>
+
+                        <aside class="notes">
+                            That second one looked pretty bad right, who would have expected the exact opposite?!
+                            Moral of the story: it's good to involve designers early on and have them keep translations in mind.
+                            My point is, similar length should be treated as same or equal, whether word or phrase.
+                            Imagine a row of checkboxes all in one line and then having it break on a language 6 months down the line.
+                            Your design language needs to be flexible enough to take such things into consideration.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Always treat strings as phrases, never individual words</h2>
+
+                        <p>
+                            Imagine the previous example,
+                            what would have happened if each word in the English string was translated separately?
+                            <br>
+                            What would have become of 3/4 of them when the user switched to the German version of the page?
+                        </p>
+
+                        <p>
+                            Another scenario, what if the order of words is different as per the grammar of different languages?
+                            <br><br>
+                            <strong>EN</strong>: My name is Rahul Doshi
+                            <br>
+                            <strong>HI</strong>: Mera naam <u>hai</u> Rahul Doshi
+                            <i class="fa fa-times fragment"></i>
+                            <br>
+                            <strong>HI</strong>: Mera naam Rahul Doshi <u>hai</u>
+                            <i class="fa fa-check fragment"></i>
+                    </section>
+
+                    <section>
+                        <h2>The role of your backend</h2>
+                        <p>
+                            Assuming that you will not be performing resource intensive operations like searching and sorting
+                            on the frontend, your API server will have ready to handle requests in multiple languages.
+
+                            <ul>
+                                <li>Saving columns that may be sort keys in the future in all supported languages</li>
+                                <li>Sorting data (say on the title) based on titles being in different languages</li>
+                                <li>Searching through data based on user input in different languages</li>
+                                <li>Accepting a language param in each request or in the header</li>
+                            </ul>
+                        </p>
+
+                        <aside class="notes">
+                            It pays big dividends to involve your server team,
+                            especially the guys responsible for building the technologies that will process your requests
+                            and return data in the early stages of the design process.
+
+                            your API server also needs to play a role in localization. Imagine that you are searching a list of geos...
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Ensure any components used are also localization-friendly</h2>
+
+                        <p>Any third party components that you use or build yourself should also support localization.</p>
+
+                        <ul>
+                            <li>datepicker - date formatting, start day of week</li>
+                            <li>timepicker - time format (military, 12/24 hr)</li>
+                            <li>inputs like select2 - accept multiple language keystrokes (unicode)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Leverage all of Angular's excellent baked in features</h2>
+                        <p>
+                            AngularJS already provides framework-level support for a lot of things
+                            so there is no need to re-invent the wheel, use what you already have
+                            and build better, more relevant stuff on top of it instead.
+                        </p>
+
+                        <p>You just need to include the locale-specific add-on files but good to know about these things too.</p>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>pluralization</li>
+                                <li>numbering systems</li>
+                                <li>number separators (decimalmark), grouping</li>
+                                <li>currency, datetimes</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2 class="slide-header">Getting a user's locale</h2>
+                        
+                        <blockquote style="line-height:1.25em; margin-bottom: 0.25em">
+                            &ldquo;Unfortunately, there is no 100% reliable way in the browser of getting the user's locale information
+                            - unless you ask the user explicitly.&rdquo;
+                        </blockquote>
+                        <p>
+                            <a href="https://twitter.com/marcosc">@marcosc</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>The Problem</h2>
+
+                        <p>You've probably done this hundreds of times:</p>
+
+<pre><code class="javascript">var date = new Date();</code></pre>
+
+                        <p>And possibly displayed it in the browser's default locale by calling:</p>
+
+<pre><code class="javascript">date.toLocaleDateString();
+//returns e.g. "Friday, August 24, 2012"</pre></code>
+
+                        <aside class="notes">
+                            The above might be all well and good if the user is sitting at home where her computer's locale settings
+                            (i.e., language and geographical region) are likely set correctly.
+                            But what happens if the user is on a PC whose locale settings are set to Japanese,
+                            but her preferred locale settings are Portuguese as used in Portugal?
+
+                            Lets say our user is backpacking around the world
+                            and has logged into your Web application from an Internet cafe in Japan.
+                            How can you make sure she sees numbers, dates, and currencies formatted in a way she is most accustomed to?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>The Solution</h2>
+
+                        <p>
+                            There are some unreliable hacks, like querying <code>navigator.language</code> in Chrome and Firefox,
+                            or <code>navigator.browserLanguage</code> in IE,
+                            or looking at the HTTP <code>Accept-Language</code> header using XHR.
+                        </p>
+
+                        <aside class="notes">
+                            But these techniques would not help our previously described backpacking-user:
+                            because she is using a computer at an internet cafe,
+                            she has no control over the language preferences of the machine.
+                        </aside>
+
+                        <p>
+                            So, just ask if you need to.
+                            Or provide a way for the user to select their locale preferences.
+                        </p>
+
+                        <p>
+                            Then, convert what we know about the user's locale to a language tag,
+                            a simple string that represents the user's preferred language
+                            and, optionally, where they are (or wish they were for the purposes of communication).
+                        </p>
+
+                        <p>
+                            You can store these choices by setting a cookie
+                            or in the browser's local storage as you prefer.
+                        </p>
+
+                        <aside class="notes">
+                            Briefly discuss local storage vs cookie performance.
+                            Advantage of using cookies is that they are sent aling with each HTTP request
+                            so implicitly sent to your API server which can make use of it
+                            since as we have seen, there might be a need for that
+                            and also because the standard Accept-Language header depends on the system-level preferences
+                            which, as we have just seen, is unreliable in a lot of situations.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Language Tags and Locales</h2>
+
+                        <blockquote style="line-height:1.25em; margin-bottom: 0.25em">
+                            &ldquo;Language tags are used to help identify languages,
+                            whether spoken, written, signed, or otherwise signaled,
+                            for the purpose of communication.&rdquo;
+                        </blockquote>
+                        <p>
+                            <a href="http://www.rfc-editor.org/bcp/bcp47.txt">BCP47</a>
+                        </p>
+
+                        <aside class="notes">
+                            You have undoubtedly encountered language tags before.
+                            For example "en-US", which roughly translates to "English as used in the United States";
+                            as opposed to, say, "en-AU", which would be "English as used in Australia".
+                            And as you can see, most language tags simply identify some language as used in some country or region.
+
+                            But a language tag, or more generally, the concept of a locale,
+                            doesn't just relate to languages:
+                            it also indicates the conventions for how dates, times,
+                            and currencies are formatted and how lists are sorted as well.
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1 class="slide-header">The Angular Way</h1>
+                    </section>
+
+                    <section>
+                        <h2>Architecture</h2>
+
+                        <p>
+                            Our solution is based on a simple architecture.
+                            We will have a folder for each language that we would like to support.
+                            Inside will be localized resource files
+                            for each route or module we want to support.
+                        </p>
+
+                        <p>
+                            We will also pick a default language
+                            that will be used to fall back to the site’s native language
+                            if a given user’s language is not supported.
+                        </p>
+
+                        <p>
+                            100% of the code is run on the front-end within the browser,
+                            and no special server-side support needs to be provided.
+                        </p>
+
+                        <aside class="notes">
+                            There are some solutions that employ specific node libraries
+                            or other server-side tooling in-place of a UI wrapper layer
+                            to provide full localization support.
+                            Our solution will be different as it promotes angular apps
+                            as being browser-based and run entirely off a webserver/static fileserver/CDN
+                            if required, and doesn't seek to replace the existing paradaigm.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <p>The proposed directory structure:</p>
+
+<pre><code>lang
+├── en-US
+│   ├── common.json
+│   ├── login.json
+│   ├── home.json
+│   └── ...
+├── fr-FR
+│   ├── common.json
+│   ├── login.json
+│   ├── home.json
+│   └── ...
+└── ...
+</pre></code>
+                    </section>
+
+                    <section>
+                        <p>Below is an example of the file format:</p>
+
+<pre><code class="json">{
+    "cancel": "Cancel",
+    "no": "No",
+    "ok": "OK",
+    "yes": "Yes"
+}</pre></code>
+                    </section>
+
+                    <section>
+                        <h2>A First Approach</h2>
+
+                        <p>
+                            A service will form the core of our localization engine,
+                            providing an interface that will be responsible for checking the user's language settings
+                            and requesting the appropriate resource based on the language.
+                        </p>
+                        <p>
+                            It will also provide several methods,
+                            a lookup method that will return a localized string for a given key from the loaded resource file,
+                            a way to get/set the locale, and finally, a way to setup some defaults. 
+                        </p>
+                        <p>
+                            Lastly, it will notify us (via promises) when an individual file or a group of files
+                            has been successfully loaded into memory and is ready for use.
+                        </p>
+                    </section>
+
+                    <section>
+                        <p>JavaScript:</p>
+<pre><code class="javascript">$scope.strings = {};
+locale.ready('common').then(function() {
+    $scope.strings.helloWorld = locale.getString('common.helloWorld');
+});</pre></code>
+
+                        <br>
+
+                        <p>HTML:</p>
+<pre><code class="html">&lt;p&gt;{{ strings.helloWorld }}&lt;/p&gt;</pre></code>
+
+                        <small>
+                            <a href="http://plnkr.co/edit/xCeADJ1LidsObWOhStjL?p=preview" target="_blank">
+                                Edit in Plunker
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </small>
+
+                        <p style="padding-top: 50px">Output:</p>
+                        <p><code>Hello World!</code></p>
+                        
+                        <aside class="notes">
+                            This is naive as it requires you to manually refresh all the strings
+                            through the controller upon a change in language invoked by the user.
+                            Also does not take advantage of angular's excellent two-way bindings.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Implementation: Take Two</h2>
+
+                        <p>Using Fliters:</p>
+
+<pre><code class="html">&lt;p&gt;{{ 'common.helloWorld' | i18n }}&lt;/p&gt;</pre></code>
+
+                        <small>
+                            <a href="http://plnkr.co/edit/mTsVW5GLdKsgMGOh6FhM?p=preview" target="_blank">
+                                Edit in Plunker
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </small>
+
+                        <p style="padding-top: 50px">Output:</p>
+                        <p><code>Hello World!</code></p>
+
+                        <aside class="notes">
+                            This is much better as it allows angular to implicitly refresh the strings.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Performance Considerations</h2>
+
+                        <p>Improvements with a Directive:</p>
+
+<pre><code class="html">&lt;p data-i18n="common.helloWorld"&gt;&lt;/p&gt;</pre></code>
+
+                        <small>
+                            <a href="http://plnkr.co/edit/OcsJxpOHZhvVirjjMiaJ?p=preview" target="_blank">
+                                Edit in Plunker
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </small>
+
+                        <p style="padding-top: 50px">Output:</p>
+                        <p><code>Hello World!</code></p>
+
+                        <aside class="notes">
+                            Let's take a step back and look at the larger picture.
+                            As your app grows, you will be localizing a large number of strings on each page.
+
+                            Filters Degrade Performance
+
+                            One of the first things that was found out when we had a large page to provide translations for,
+                            is that the more filters you use on a page the slower your page becomes
+                            and performance will degrade significantly.
+                            This is mainly due to the fact that the filters are being re-evaluated with every watch cycle.
+                            So, I created a directive that provided the translation functionality.
+
+                            The advantages are immediately apparent:
+
+                            - performance on the page improves by quite a significant amount.
+                            The user only ever changes the language of the page once or twice
+                            thru the life of the app, no need to have the strings constantly re-evaluated.
+                            - the directive listens on the localization service's events, captures them
+                            and automatically performs a refresh of all strings bound on that page.
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1 class="slide-header">Useful Additions</h1>
+                    </section>
+
+                    <section>
+                        <h2>Inline Substitutions</h2>
+
+                        <p>example.json</p>
+
+<pre><code class="json">{
+    "nameOuput": "My name is %fullname"
+}</code></pre>
+
+                        <p>Filter:</p>
+
+<pre><code class="html">&lt;p&gt;{{ 'example.nameOutput' | i18n:'Rahul Doshi' }}&lt;/p&gt;</pre></code>
+
+                        <p>Directive:</p>
+
+<pre><code class="html">&lt;p data-i18n="example.nameOutput" data-fullname="Rahul Doshi"&gt;&lt;/p&gt;</pre></code>
+
+                        <small>
+                            <a href="http://plnkr.co/edit/eaFnYr8JvqTCQqBL4b24?p=preview" target="_blank">
+                                Edit in Plunker
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </small>
+
+                        <aside class="notes">
+                            Same thing as what's also known as "setting dynamic values",
+                            commonly referred to as "interpolation"
+                            (not to be confused with angular's interpolation)
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Setting Localized Attributes</h2>
+
+                        <p>
+                            Good for when you want to avoid angular's interpolation
+                            in setting certain attributes on the DOM element
+                            such as placeholder for an input.
+                        </p>
+
+<pre><code class="html">&lt;input data-i18n-attr="{placeholder: 'login.emailPrompt'}"&gt;</code></pre>
+
+                        <small>
+                            <a href="http://plnkr.co/edit/lYTww7oNvVwvEYDjpEob?p=preview" target="_blank">
+                                Edit in Plunker
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2 style="margin-bottom: 0px">Pluralization</h2>
+                        <i style="margin-bottom: 20px; display:block">
+                            (Experimental -- using inside ng-pluralize)
+                        </i>
+
+                        <p>In your controller:</p>
+
+<pre><code class="javascript">$scope.numCount = 1;
+$scope.pluralStrings = {
+  nobodyIsViewing: 'common.nobodyIsViewing',
+  onePersonIsViewing: 'common.onePersonIsViewing',
+  manyPeopleAreViewing: 'common.manyPeopleAreViewing'
+}
+</code></pre>
+
+                        <p>On the page:</p>
+
+<pre><code class="html">&lt;input type="number" min="0" data-ng-model="personCount"&gt;
+&lt;span
+    data-ng-pluralize
+    data-count="personCount"
+    data-when="{
+        '0': '{{ pluralStrings.nobodyIsViewing | i18n }}',
+        '1': '{{ pluralStrings.onePersonIsViewing | i18n }}',
+        'other': '{{ pluralStrings.manyPeopleAreViewing | i18n:personCount }}'
+    }"&gt;
+&lt;/span&gt;</pre></code>
+
+                    <small>
+                        <a href="http://plnkr.co/edit/0qgrg1M5wl7UDgRPgZNm?p=preview" target="_blank">
+                            Edit in Plunker
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </small>
+                    </section>
+
+                    <section>
+                        <h2>Gender</h2>
+
+                        <p>Experimental: using with ng-switch</p>
+
+<pre><code class="html">&lt;div data-ng-switch="user.gender"&gt;
+    &lt;span&gt; data-ng-switch-when="m" data-i18n="common.male"&gt;&lt;/span&gt;
+    &lt;span&gt; data-ng-switch-when="f" data-i18n="common.female"&gt;&lt;/span&gt;
+&lt;/div&gt;</pre></code>
+
+                        <p>ng-if also works with filter</p>
+<pre><code class="html">Gender:
+&lt;span data-ng-if="user.gender == 'm'"&gt;{{ 'common.male' | i18n }}&lt;/span&gt;
+&lt;span data-ng-if="user.gender == 'f'"&gt;{{ 'common.female' | i18n }}&lt;/span&gt;
+</pre></code>
+
+
+                    <small>
+                        <a href="http://plnkr.co/edit/8SMDBqhxl5aq2rTggBiA?p=preview" target="_blank">
+                            Edit in Plunker
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </small>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Bonus</h1>
+                    </section>
+
+                    <section>
+                        <h2>grunt-angular-localization</h2>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Resources</h1>
+                    </section>
+
+                    <section>
+                        <h2>
+                            <a href="http://doshprompt.github.io/angular-localization">
+                                angular-localization
+                            </a>
+                        </h2>
+
+                        <img src="img/angular-localization.png" class="screenshot"></img>
+                    </section>
+
+                    <section>
+                        <h4>Reference Links</h4>
+                        <ul>
+                            <li>
+                                <a href="http://marcoscaceres.github.io/jsi18n/">
+                                    Using the ECMAScript Internationalization API
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.2ality.com/2013/09/ecmascript-i18n-api.html">
+                                    More on the ECMAScript Internationalization API
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://codingsmackdown.tv/blog/2013/04/23/localizing-your-angularjs-apps-update/">
+                                    Filter Performance Degradation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://codingsmackdown.tv/blog/2013/04/24/localizing-your-angularjs-apps-yet-another-update/">
+                                    Localizing HTML Attributes
+                                </a>
+                            </li>
+                        </ul>
+
+                        <br><br>
+
+                        <h4>Credits</h4>
+                        <ul>
+                            <li>
+                                <a href="https://speakerdeck.com/hakanson/internationalize-your-javascript-application-prepare-for-the-next-billion-internet-users">
+                                    Kevin Hakanson
+                                </a>
+                                for inspiring me to present on this topic.
+                            </li>
+                            <li>
+                                <a href="http://codingsmackdown.tv/blog/2012/12/14/localizing-your-angularjs-app/">
+                                    Jim Lavin
+                                </a>
+                                for setting me down this path in the first place!
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+
+		<script src="bower_components/reveal.js/js/reveal.min.js"></script>
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{
+                        src: 'bower_components/reveal.js/lib/js/classList.js',
+                        condition: function () {
+                            return !document.body.classList;
+                        }
+                    },
+					{
+                        src: 'bower_components/reveal.js/plugin/markdown/marked.js',
+                        condition: function () {
+                            return !!document.querySelector('[data-markdown]');
+                        }
+                    },
+					{
+                        src: 'bower_components/reveal.js/plugin/markdown/markdown.js',
+                        condition: function () {
+                            return !!document.querySelector('[data-markdown]');
+                        }
+                    },
+					{
+                        src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
+                        async: true,
+                        callback: function () {
+                            hljs.initHighlightingOnLoad();
+                        }
+                    },
+					{
+                        src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js',
+                        async: true,
+                        condition: function () {
+                            return !!document.body.classList;
+                        }
+                    },
+					{
+                        src: 'bower_components/reveal.js/plugin/notes/notes.js',
+                        async: true,
+                        condition: function() {
+                            return !!document.body.classList;
+                        }
+                    }
+				]
+			});
+		</script>
+
+		<script src="bower_components/zepto/zepto.min.js"></script>
+		<script>
+			Zepto(function ($) {
+				var tableOfContents = $('#toc'),
+				    tableList = $('<ol />');
+
+			  	$('.slide-header').each(function (index) {
+			  		var _self = $(this),
+			  			hash = '#/' + _self.closest('.slides > section').index();
+                        window.blah = _self;
+			  		
+			  		tableList.append([ 
+			  			'<li>',
+			  				'<a href="' + hash + '">',
+			  					_self.text(),
+			  				'</a>',
+			  			'</li>'
+			  		].join(''));
+				});
+
+				tableOfContents.html(tableList);
+			});
+		</script>
+	</body>
+</html>
