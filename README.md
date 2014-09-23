@@ -1,7 +1,4 @@
-Slide deck with notes from AngularJS Meetups:
-
-- SF (09/22/2014) - www.meetup.com/AngularJS-SF/events/207760672/
-- MTV (09/22/2014)- www.meetup.com/AngularJS-MTV/events/206715572/
+Presentation slide deck with notes from AngularJS Meetups.
 
 <table>
     <tr>
@@ -12,7 +9,7 @@ Slide deck with notes from AngularJS Meetups:
         </td>
         <td>
             <h3>Slides available online:<br>
-                <a href="http://doshprompy.github.io/angular-localization-meetup/">
+                <a href="http://doshprompt.github.io/angular-localization-meetup/">
                     Internationalize AngularJS: Globalized Apps for a Global Audience.
                 </a>
             </h3>
