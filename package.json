@@ -25,8 +25,5 @@
   "bugs": {
     "url": "https://github.com/doshprompt/angular-localization-meetup/issues"
   },
-  "homepage": "https://github.com/doshprompt/angular-localization-meetup",
-  "devDependencies": {
-    "node-static": "^0.7.5"
-  }
+  "homepage": "https://github.com/doshprompt/angular-localization-meetup"
 }
