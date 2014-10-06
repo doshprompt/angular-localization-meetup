@@ -20,6 +20,7 @@ Presentation slide deck with notes from AngularJS Meetups.
 > If you are looking for the official documentation, you can find it here: [ngLocalize Docs](http://doshprompt.github.io/angular-localization).
 
 ## Contributing
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/doshprompt/angular-localization-meetup?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ##### Have you found a problem to fix?
 Fork the repo and send a pull request -- your contribution is really welcome.
