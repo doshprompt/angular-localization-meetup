@@ -3,7 +3,7 @@ Presentation slide deck with notes from AngularJS Meetups.
 <table>
     <tr>
         <td>
-            <a href="http://ramonvictor.github.io/protractor/slides/">
+            <a href="http://doshprompt.github.io/angular-localization-meetup/">
                 <img src="https://raw.githubusercontent.com/doshprompt/angular-localization-meetup/gh-pages/assets/fa-globe.png">
             </a>
         </td>
